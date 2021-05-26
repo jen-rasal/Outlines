@@ -1,0 +1,4 @@
+# creates a simple boxplot from a single dataframe, muliple boxs can go on the same graph if they are split in different columns in a dataframe
+
+import pandas as pd
+boxplot = df.boxplot(column=['ColumnHeaderA', 'ColumnHeaderB'])
