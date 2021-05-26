@@ -1,0 +1,33 @@
+
+from sklearn.manifold import MDS
+
+# have a df ready with all the columns ones that you want included in the MDS plot
+
+df
+
+# have all the columns either numerical or binary or dummies variables
+df1 = pd.get_dummies(df, columns=col_to_keep)
+
+mds = MDS(2,random_state=0)
+X_2d = mds.fit_transform(df1)
+
+# create a df with the MDS x and y coordinates and attach them on to the original df in columns called "x" and "y"
+
+df2 = pd.DataFrame(X_2d)
+df["x"] = df2[0]
+df["y"] = df2[1]
+
+
+#import seaborn to plot scatter plot
+
+import seaborn as sns
+
+# creates scatter plot set hue to which ever group (column) you want to highlight
+
+graph =sns.scatterplot(x="x", y="y",
+              hue="Column Name",
+              data=df)
+plt.title('Column Name')
+
+#move legend out of graph space so you can see it
+graph.legend(loc='center left', bbox_to_anchor=(1.25, 0.5), ncol=1)
